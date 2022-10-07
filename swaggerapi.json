@@ -1,0 +1,240 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Frist Api"
+    },
+    "host": "localhost:4000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/employees": {
+            "get": {
+                "summary": "List of employees",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/getapi"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add employee with body",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "With body",
+                        "description": "Write name, adress",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "name",
+                                "adress"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "Alex"
+                                },
+                                "adress": {
+                                    "type": "string",
+                                    "example": "Nukus"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/postapi"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update employee with body",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "employ",
+                        "description": "Employee with new values",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "name",
+                                "adress"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "int",
+                                    "example": 5
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "Alex"
+                                },
+                                "adress": {
+                                    "type": "string",
+                                    "example": "Nukus"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Employee is updated",
+                        "schema": {
+                            "$ref": "#/definitions/putapi"
+                        }
+                    }
+                }
+            }
+        },
+        "/employees/{id}": {
+            "get": {
+                "summary": "Employee by ID with params",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/getbyid"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete employee with id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "description": "Delete Employee",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "id"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "int",
+                                    "example": 5
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete Employee",
+                        "schema": {
+                            "$ref": "#/definitions/deleteapi"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getapi": {
+            "required": [
+                "name, adress"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Erkin"
+                },
+                "adress": {
+                    "type": "string",
+                    "example": "Tashkent"
+                },
+                "id": {
+                    "type": "int",
+                    "example": 1
+                }
+            }
+        },
+        "postapi": {
+            "type": "object",
+            "required": [
+                "name",
+                "adress"
+            ],
+            "properties": {
+                "success": {
+                    "type": "string",
+                    "example": true
+                }
+            }
+        },
+        "putapi": {
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "adress"
+            ],
+            "properties": {
+                "success": {
+                    "type": "string",
+                    "example": true
+                }
+            }
+        },
+        "deleteapi": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "success": {
+                    "type": "string",
+                    "example": true
+                }
+            }
+        },
+        "getbyid": {
+            "required": [
+                "name, adress"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Erkin"
+                },
+                "adress": {
+                    "type": "string",
+                    "example": "Tashkent"
+                },
+                "id": {
+                    "type": "int",
+                    "example": 1
+                }
+            }
+        }
+    }
+}
